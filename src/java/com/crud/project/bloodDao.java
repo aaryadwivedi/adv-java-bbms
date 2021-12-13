@@ -6,6 +6,10 @@
 package com.crud.project;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,5 +21,23 @@ public class bloodDao {
     public bloodDao(Connection con) {
         this.con = con;
     }
-    
+   public List<Blood> getAllBlood(){
+        List<Blood> dn=new ArrayList<>();
+        try{
+            String query="select* from blood  order by type desc";
+            PreparedStatement pt= this.con.prepareStatement(query);
+            
+            ResultSet rs=pt.executeQuery();
+            while(rs.next()){
+                String type=rs.getString("type");
+                int quant=rs.getInt("quant");
+                Blood row= new Blood(type,quant);
+                dn.add(row);
+            }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return dn;
+    }
 }

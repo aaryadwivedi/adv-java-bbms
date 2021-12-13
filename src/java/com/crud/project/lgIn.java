@@ -1,11 +1,11 @@
-package com.crud.project;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.crud.project;
 
+import com.mysql.cj.Session;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,11 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author Aarya
  */
-public class AddDonor extends HttpServlet {
+public class lgIn extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,32 +37,34 @@ public class AddDonor extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddDonor</title>");            
+            out.println("<title>Servlet lgIn</title>");            
             out.println("</head>");
             out.println("<body>");
-            HttpSession session = request.getSession();
-            User uu=(User) session.getAttribute("loguser");
-            int u_id=uu.getU_id();
-            String donordate=request.getParameter("donordate");
-            String donortype=request.getParameter("donortype");
-            int donorquant=Integer.parseInt(request.getParameter("donorquant"));
-            Donor D=new Donor(u_id,donordate,donortype,donorquant,0);
-            try{
-                DonorDao dndao=new DonorDao(ConnectionDao.getCon());
-                if(dndao.addDonor(D)){
-                //HttpSession session = request.getSession();
-                session.setAttribute("message","Successful");
-                response.sendRedirect("dashboard.jsp");
-                //response.sendRedirect("dashboard.jsp?success=1");
+            
+            String lemail=request.getParameter("lgemail");
+            String lpass=request.getParameter("lgpswd");
+            UserDao usd= new UserDao(ConnectionDao.getCon());
+            User user =usd.logUser(lemail, lpass);
+            if(user!=null)
+            {
+                if(user.getAcc()==0)
+                {
+                    HttpSession session=request.getSession();
+                    session.setAttribute("loguser",user);
+                    response.sendRedirect("dashboard.jsp");
                 }
                 else
                 {
-                    //HttpSession session = request.getSession();
-                    session.setAttribute("error","Oops! Something went wrong");
-                    response.sendRedirect("dashboard.jsp");
+                    HttpSession session=request.getSession();
+                    session.setAttribute("loguser",user);
+                    response.sendRedirect("admin.jsp");
                 }
-            }catch(Exception e){
-                e.printStackTrace();
+            }
+            else
+            {
+                HttpSession session = request.getSession();
+                session.setAttribute("error","Oops! Something went wrong");
+                response.sendRedirect("login.jsp");
             }
             out.println("</body>");
             out.println("</html>");

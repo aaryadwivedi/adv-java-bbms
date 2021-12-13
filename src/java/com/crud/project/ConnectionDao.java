@@ -23,4 +23,8 @@ public class ConnectionDao {
         }
         return con;
     }
+
+    static Connection getConnnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

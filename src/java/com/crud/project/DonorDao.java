@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,7 +42,55 @@ public class DonorDao {
     public List<Donor> getAllDonors(){
         List<Donor> dn=new ArrayList<>();
         try{
-            String query="select* from donor";
+            String query="select* from donor where status = 1  order by date desc limit 10";
+            PreparedStatement pt= this.con.prepareStatement(query);
+            
+            ResultSet rs=pt.executeQuery();
+            while(rs.next()){
+                int d_id=rs.getInt("d_id");
+                int u_id=rs.getInt("u_id");
+                String type=rs.getString("type");
+                String date=rs.getString("date");
+                int quant=rs.getInt("quant");
+                int status=rs.getInt("status");
+                
+                Donor row= new Donor(d_id,u_id,date,type,quant,status);
+                dn.add(row);
+            }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return dn;
+    }
+    public List<Donor> getAllD(){
+        List<Donor> dn=new ArrayList<>();
+        try{
+            String query="select* from donor where status = 0 order by date desc";
+            PreparedStatement pt= this.con.prepareStatement(query);
+            
+            ResultSet rs=pt.executeQuery();
+            while(rs.next()){
+                int d_id=rs.getInt("d_id");
+                int u_id=rs.getInt("u_id");
+                String type=rs.getString("type");
+                String date=rs.getString("date");
+                int quant=rs.getInt("quant");
+                int status=rs.getInt("status");
+                
+                Donor row= new Donor(d_id,u_id,date,type,quant,status);
+                dn.add(row);
+            }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return dn;
+    }
+     public List<Donor> getAllDC(){
+        List<Donor> dn=new ArrayList<>();
+        try{
+            String query="select* from donor where status = 1 order by date desc";
             PreparedStatement pt= this.con.prepareStatement(query);
             
             ResultSet rs=pt.executeQuery();

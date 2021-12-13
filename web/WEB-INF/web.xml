@@ -4,9 +4,41 @@
         <servlet-name>AddDonor</servlet-name>
         <servlet-class>com.crud.project.AddDonor</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddUser</servlet-name>
+        <servlet-class>com.crud.project.AddUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>lgIn</servlet-name>
+        <servlet-class>com.crud.project.lgIn</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>com.crud.project.logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddRequest</servlet-name>
+        <servlet-class>com.crud.project.AddRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddDonor</servlet-name>
         <url-pattern>/AddDonor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddUser</servlet-name>
+        <url-pattern>/AddUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lgIn</servlet-name>
+        <url-pattern>/lgIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRequest</servlet-name>
+        <url-pattern>/AddRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

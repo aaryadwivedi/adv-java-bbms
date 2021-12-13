@@ -1,10 +1,9 @@
-package com.crud.project;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.crud.project;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,11 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author Aarya
  */
-public class AddDonor extends HttpServlet {
+public class AddRequest extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,19 +36,19 @@ public class AddDonor extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddDonor</title>");            
+            out.println("<title>Servlet AddRequest</title>");            
             out.println("</head>");
             out.println("<body>");
+            
             HttpSession session = request.getSession();
             User uu=(User) session.getAttribute("loguser");
             int u_id=uu.getU_id();
-            String donordate=request.getParameter("donordate");
-            String donortype=request.getParameter("donortype");
-            int donorquant=Integer.parseInt(request.getParameter("donorquant"));
-            Donor D=new Donor(u_id,donordate,donortype,donorquant,0);
+            String reqtype=request.getParameter("reqtype");
+            int reqquant=Integer.parseInt(request.getParameter("reqquant"));
+            Request R=new Request(u_id,reqtype,reqquant,0);
             try{
-                DonorDao dndao=new DonorDao(ConnectionDao.getCon());
-                if(dndao.addDonor(D)){
+                RequestDao dndao=new RequestDao(ConnectionDao.getCon());
+                if(dndao.addRequest(R)){
                 //HttpSession session = request.getSession();
                 session.setAttribute("message","Successful");
                 response.sendRedirect("dashboard.jsp");
@@ -63,6 +63,7 @@ public class AddDonor extends HttpServlet {
             }catch(Exception e){
                 e.printStackTrace();
             }
+            
             out.println("</body>");
             out.println("</html>");
         }
