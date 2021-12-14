@@ -86,4 +86,22 @@ public class RequestDao {
         }
         return dn;
     }
+    public boolean editStat(int id,int stat){
+        boolean t=false;
+        String query="update request set status=? where r_id=?";
+        try{
+            PreparedStatement pst = this.con.prepareStatement(query);
+            
+            pst.setInt(1, stat);
+            pst.setInt(2, id);
+            
+            pst.executeUpdate();
+            
+            t=true;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return t;
+    }
 }

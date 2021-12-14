@@ -18,6 +18,21 @@ public class User {
     String password;
     int acc;
 
+    public User(String fname, String lname, String email, String dob, String password) {
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.dob = dob;
+        this.password = password;
+    }
+
+    public User(int u_id, String fname, String lname, String password) {
+        this.u_id = u_id;
+        this.fname = fname;
+        this.lname = lname;
+        this.password = password;
+    }
+
     public User() {
     }
 

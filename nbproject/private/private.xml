@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Aarya/Documents/NetBeansProjects/BloodBank/src/java/com/crud/project/donorReq.java</file>
             <file>file:/C:/Users/Aarya/Documents/NetBeansProjects/BloodBank/src/java/com/crud/project/DonorDao.java</file>
             <file>file:/C:/Users/Aarya/Documents/NetBeansProjects/BloodBank/web/admin.jsp</file>
+            <file>file:/C:/Users/Aarya/Documents/NetBeansProjects/BloodBank/src/java/com/crud/project/UserDao.java</file>
+            <file>file:/C:/Users/Aarya/Documents/NetBeansProjects/BloodBank/src/java/com/crud/project/recReq.java</file>
             <file>file:/C:/Users/Aarya/Documents/NetBeansProjects/BloodBank/src/java/com/crud/project/RequestDao.java</file>
+            <file>file:/C:/Users/Aarya/Documents/NetBeansProjects/BloodBank/src/java/com/crud/project/bloodDao.java</file>
+            <file>file:/C:/Users/Aarya/Documents/NetBeansProjects/BloodBank/web/addD.jsp</file>
         </group>
     </open-files>
 </project-private>

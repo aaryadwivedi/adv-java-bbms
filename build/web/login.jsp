@@ -4,8 +4,21 @@
     Author     : Aarya
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="com.crud.project.UserDao"%>
+<%@page import="com.crud.project.ConnectionDao"%>
+<%@page import="com.crud.project.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% User user = (User) session.getAttribute("loguser");
+    if(user!=null){
+        response.sendRedirect("dashboard.jsp");
+    }
+%>
+<% UserDao udao = new UserDao(ConnectionDao.getCon());
+List<User>ud=udao.getAllUser();
+request.setAttribute("USER_LIST",ud);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +34,7 @@
                     <div class="success">${message}</div>
                     <c:remove var="message"/>
                 </c:if>
-                    <c:if test="${not empty error}">
+                <c:if test="${not empty error}">
                     <div class="error">${error}</div>
                     <c:remove var="error"/>
                 </c:if>

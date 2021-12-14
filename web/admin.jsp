@@ -38,6 +38,8 @@ request.setAttribute("BLOOD_LIST",bd);
 <% UserDao udao = new UserDao(ConnectionDao.getCon());
 List<User>ud=udao.getAllUser();
 request.setAttribute("USER_LIST",ud);
+List<User>admin=udao.getAllAdmin();
+request.setAttribute("ADMIN_LIST",admin);
 %>
 <% User user = (User) session.getAttribute("loguser");
     if(user==null){
@@ -73,7 +75,7 @@ request.setAttribute("USER_LIST",ud);
             <li><a href="#req">Pending Requests</a></li>
             <li><a href="#data">Data</a></li>
             <li style="float:right"><a href="logout">Logout</a></li>
-             <li style="float:right"><a href="#">Hello, <%if(user!=null){out.println(user.getFname());}%></a></li>
+             <li style="float:right"><a href="editprofile.jsp">Hello, <%if(user!=null){out.println(user.getFname());}%></a></li>
         </ul>
         <div id="users">
             <div class="body">
@@ -95,8 +97,35 @@ request.setAttribute("USER_LIST",ud);
                           <td>${tempU.lname}</td>
                           <td>${tempU.email}</td>
                           <td>
-                            <button class="button button1">Change type</button>
-                            <button class="button button3">Remove</button>
+                              <button class="button button1"><a href="changetype?type=1&id=${tempU.u_id}">Change type</a></button>
+                              <button class="button button3"><a href="delete?id=${tempU.u_id}">Remove</a></button>
+                          </td>
+                        </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </div>
+            <div class="body">
+                <div class="notmain">
+                    <h2>Admin</h2>
+                    <table>
+                        <tr>
+                          <th>User Id</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Email</th>
+                          <th>Action</th>
+
+                        </tr>
+                       <c:forEach var="tempU" items="${ADMIN_LIST}">
+                        <tr>
+                          <td>${tempU.u_id}</td>
+                          <td>${tempU.fname}</td>
+                          <td>${tempU.lname}</td>
+                          <td>${tempU.email}</td>
+                          <td>
+                              <button class="button button1"><a href="changetype?type=0&id=${tempU.u_id}">Change type</a></button>
+                              <button class="button button3"><a href="delete?id=${tempU.u_id}">Remove</a></button>
                           </td>
                         </tr>
                         </c:forEach>
@@ -126,8 +155,8 @@ request.setAttribute("USER_LIST",ud);
                       <td>${tempD.quant}</td>
                       <td>${tempD.date}</td>
                       <td>
-                        <button class="button button1">Approve</button>
-                        <button class="button button3">Reject</button>
+                          <button class="button button1"><a href="donorReq?id=${tempD.d_id}&stat=1&btype=${tempD.type}&quant=${tempD.quant}">Approve</a></button>
+                          <button class="button button3"><a href="donorReq?id=${tempD.d_id}&stat=2">Reject</a></button>
                       </td>
                     </tr>
                     </c:forEach>
@@ -152,8 +181,8 @@ request.setAttribute("USER_LIST",ud);
                             <td>${tempD.type}</td>
                             <td>${tempD.quant}</td>
                             <td>
-                                <button class="button button1">Approve</button>
-                                <button class="button button3">Reject</button>
+                                <button class="button button1"><a href="recReq?id=${tempD.r_id}&stat=1&btype=${tempD.type}&quant=${tempD.quant}">Approve</a></button>
+                                <button class="button button3"><a href="recReq?id=${tempD.r_id}&stat=2">Reject</a></button>
                             </td>
                         </tr>
                         </c:forEach>
@@ -206,6 +235,23 @@ request.setAttribute("USER_LIST",ud);
                       <td>${tempD.type}</td>
                       <td>${tempD.quant}</td>
                       
+                    </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
+            <div class="body">
+            <div class="notmain">
+                <h2>Blood Availability</h2>
+                <table>
+                    <tr>
+                      <th>Type</th>
+                      <th>Quantity</th>
+                    </tr>
+                   <c:forEach var="tempB" items="${BLOOD_LIST}">
+                    <tr>
+                      <td>${tempB.type}</td>
+                      <td>${tempB.quant}</td>
                     </tr>
                     </c:forEach>
                 </table>

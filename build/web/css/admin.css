@@ -199,15 +199,15 @@ th {
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
+
   border: none;
   color: white;
-  padding: 10px 20px;
+  height: 40px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 4px 10px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
@@ -262,4 +262,8 @@ th {
 .button5:hover {
   background-color: white;
   color: #555555;
+}
+a{
+    text-decoration: none;
+    color:#555;
 }

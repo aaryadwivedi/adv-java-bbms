@@ -40,4 +40,41 @@ public class bloodDao {
         }
         return dn;
     }
+   public int getBlood(String type){
+        String query="select* from blood  where type = ?";
+        int q = 0;
+        try{
+            PreparedStatement pst = this.con.prepareStatement(query);
+            
+            pst.setString(1, type);            
+            ResultSet rs= pst.executeQuery();
+            while(rs.next()){
+                String tp=rs.getString("type");
+                q=rs.getInt("quant"); 
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return q;
+    }
+   public boolean addBlood(String type,int quant){
+        boolean t=false;
+        String query="update blood set quant=? where type=?";
+        try{
+            PreparedStatement pst = this.con.prepareStatement(query);
+            
+            pst.setInt(1, quant);
+            pst.setString(2, type);
+            
+            pst.executeUpdate();
+            
+            t=true;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return t;
+    }
+   
 }

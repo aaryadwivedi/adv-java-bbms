@@ -24,7 +24,7 @@
         <li><a class="active" href="addD.jsp">Donate/Request</a></li>
         
         <li style="float:right"><a href="logout">Logout</a></li>
-        <li style="float:right"><a href="#">Hello, <%if(user!=null){out.println(user.getFname());}%></a></li>
+        <li style="float:right"><a href="editprofile.jsp">Hello, <%if(user!=null){out.println(user.getFname());}%></a></li>
     </ul>
     <div class="body">
         <div class="main">  	
@@ -36,10 +36,10 @@
                             <input type="date" name="donordate" placeholder="Date" required="">
                             <select name="donortype" required="">
                                 <option selected disabled hidden>Blood Group</option>
-                                <option value="a+">A+</option>
-                                <option value="b+">B+</option>
-                                <option value="ab+">AB+</option>
-                                <option value="o+">O+</option>
+                                <option value="a">A+</option>
+                                <option value="b">B+</option>
+                                <option value="ab">AB+</option>
+                                <option value="o">O+</option>
                                 <option value="a-">A-</option>
                                 <option value="b-">B-</option>
                                 <option value="ab-">AB-</option>
@@ -54,10 +54,10 @@
                             <label for="chk" aria-hidden="true">Request</label>
                             <select name="reqtype" required="">
                                 <option selected disabled hidden>Blood Group</option>
-                                <option value="a+">A+</option>
-                                <option value="b+">B+</option>
-                                <option value="ab+">AB+</option>
-                                <option value="o+">O+</option>
+                                <option value="a">A+</option>
+                                <option value="b">B+</option>
+                                <option value="ab">AB+</option>
+                                <option value="o">O+</option>
                                 <option value="a-">A-</option>
                                 <option value="b-">B-</option>
                                 <option value="ab-">AB-</option>
@@ -71,4 +71,3 @@
     </div>
 </body>
 </html>
-

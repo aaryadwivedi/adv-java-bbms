@@ -55,7 +55,7 @@ request.setAttribute("BLOOD_LIST",bd);
             <li><a href="addD.jsp">Donate/Request</a></li>
             
             <li style="float:right"><a href="logout">Logout</a></li>
-             <li style="float:right"><a href="#">Hello, <%if(user!=null){out.println(user.getFname());}%></a></li>
+             <li style="float:right"><a href="editprofile.jsp">Hello, <%if(user!=null){out.println(user.getFname());}%></a></li>
         </ul>
         <div class="body">
             <div class="notmain">
